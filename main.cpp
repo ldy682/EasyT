@@ -8,6 +8,9 @@
 #include <unistd.h>
 #include <cstring>
 #include <string>
+#include <signal.h>
+#include <sys/time.h>
+#include <sys/select.h>
 
 using std::cout;
 using std::endl;
@@ -31,6 +34,7 @@ int main(){
     {
         case -1:
             std::cerr<<"failed to fork"<<endl;
+            return 1;
             break;
         case 0:
             close(aMaster);
@@ -38,35 +42,45 @@ int main(){
                 cerr<<"logintty error"<<endl;
                 return 1;
             }
-            execlp("/bin/sh", "/bin/sh", "-i", nullptr);
+            execlp("sh", "/bin/sh", nullptr);
             close(aSlave);
             return 1;
             break;
         default:
             close(aSlave);
-  
-            std::string command;
-            std::cout << "Enter a command (e.g., ls -l): ";
-            std::getline(std::cin, command);
+            timeval tv;
+            fd_set rfds;
 
-            // Send the command to the shell
-            command += '\n'; // Add newline to simulate enter keypress
-            write(aMaster, command.c_str(), command.size());
+            FD_ZERO(&rfds);
+            FD_SET(STDOUT_FILENO, &rfds);
+            tv.tv_sec = 0;
+            tv.tv_usec = 100000;
+            bool stop = false;
             
-            // Read and print output from the shell
-            char buffer[1024];
-            ssize_t bytesRead;
-            bool shellExited = false;
-            
-            while ( (bytesRead = read(aMaster, buffer, sizeof(buffer))) > 0) {
-                std::cout.write(buffer, bytesRead)<<std::flush;
-                // if (strstr(buffer, "$ ") != nullptr) {
-                //     shellExited = true;
-                // }
+            string input;
+            do{
+                getline(std::cin, input);
+                if(input == "zzz"){
+                    stop = true;
+                }
+                else{
+                    write(aMaster, input.c_str(), input.size());
+                    write(aMaster, "\n", 1);
+                    int retVal = select(aMaster+1, &rfds, nullptr, nullptr, &tv);
+                    if(retVal == -1){
+                        cerr<<"select error"<<endl;
+                    }
+                    else if(retVal){
+                        cout<<"data available"<<endl;
+                    }
+                    else{
+                        cout<<"no data available"<<endl;
+                    }
+                }
             }
+            while (!stop);
             
             close(aMaster);
-            return 0;
             break;
     }
     return 0;
