@@ -11,11 +11,13 @@
 #include <signal.h>
 #include <sys/time.h>
 #include <sys/select.h>
+#include <fcntl.h>
 
 using std::cout;
 using std::endl;
 using std::cerr;
 using std::string;
+
 
 int main(){
     int aMaster, aSlave;
@@ -23,8 +25,9 @@ int main(){
     winsize win;
     pid_t pid;
 
-    if(openpty(&aMaster, &aSlave, nullptr, &term, &win) == -1){
+    if(openpty(&aMaster, &aSlave, nullptr, nullptr, nullptr) == -1){
         cerr<<"openpty error"<<endl;
+        return -1;
     }
 
     pid = fork();
@@ -42,46 +45,57 @@ int main(){
                 cerr<<"logintty error"<<endl;
                 return 1;
             }
-            execlp("sh", "/bin/sh", nullptr);
+            // dup2(aSlave, 0);
+            // dup2(aSlave, 1);
+            // dup2(aSlave, 2);
             close(aSlave);
+            execlp("/bin/sh", "/bin/sh", NULL);
             return 1;
             break;
         default:
             close(aSlave);
-            timeval tv;
-            fd_set rfds;
-
-            FD_ZERO(&rfds);
-            FD_SET(STDOUT_FILENO, &rfds);
-            tv.tv_sec = 0;
-            tv.tv_usec = 100000;
-            bool stop = false;
             
             string input;
+            char c, co;
+            bool stop = false;
+
+            int flags = fcntl(aMaster, F_GETFL, 0);
+            fcntl(aMaster, F_SETFL, flags | O_NONBLOCK);
+            cout<<"% "<<std::flush;
+
             do{
-                getline(std::cin, input);
+                // write(STDOUT_FILENO, "% ", 2);
+                // std::cout << "% " << std::flush;
+                std::getline(std::cin, input);
+                
+                bool data = true;
                 if(input == "zzz"){
                     stop = true;
                 }
-                else{
+                else if(!stop){
                     write(aMaster, input.c_str(), input.size());
                     write(aMaster, "\n", 1);
-                    int retVal = select(aMaster+1, &rfds, nullptr, nullptr, &tv);
-                    if(retVal == -1){
-                        cerr<<"select error"<<endl;
-                    }
-                    else if(retVal){
-                        cout<<"data available"<<endl;
-                    }
-                    else{
-                        cout<<"no data available"<<endl;
-                    }
+                    timeval tv;
+                    fd_set rfds;
+                    do{
+                        FD_ZERO(&rfds);
+                        FD_SET(aMaster, &rfds);
+
+                        tv.tv_sec = 1;
+                        tv.tv_usec = 100000;
+                        select(aMaster+1, &rfds, NULL, NULL, &tv);
+
+                        if(FD_ISSET(aMaster, &rfds)){
+                            read(aMaster, &c, 1);
+                            cout<<c<<std::flush;
+                        }
+                    } while(FD_ISSET(aMaster, &rfds));
                 }
-            }
-            while (!stop);
-            
+            } while (!stop);
+            kill(pid, SIGTERM);
             close(aMaster);
             break;
     }
     return 0;
 }
+
