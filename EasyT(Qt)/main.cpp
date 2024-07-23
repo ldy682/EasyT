@@ -2,42 +2,25 @@
 
 // main.cpp
 #include <QtCore>
+#include <QTimer>
+#include "test.h"
 
-    class Task : public QObject
-{
-    Q_OBJECT
-public:
-    Task(QObject *parent = 0) : QObject(parent) {}
-
-public slots:
-    void run()
-    {
-        // Do processing here
-
-        emit finished();
-    }
-
-signals:
-    void finished();
-};
-
-#include "main.moc"
+test* getTest(QObject* parent){
+    return new test(parent);
+}
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+    QTimer timer;
 
-    // Task parented to the application so that it
-    // will be deleted by the application.
-    Task *task = new Task(&a);
+    timer.singleShot(3000, &a, QCoreApplication::quit);
 
-    // This will cause the application to exit when
-    // the task signals finished.
-    QObject::connect(task, SIGNAL(finished()), &a, SLOT(quit()));
+    test* dog = getTest(&a);
+    dog->setObjectName("doggy");
 
-    // This will run the task from the application event loop.
-    QTimer::singleShot(0, task, SLOT(run()));
-
-    return a.exec();
+    int value = a.exec();
+    qInfo() << "value: " << value;
+    return value;
 }
 
