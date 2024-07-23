@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-bf362cb2bae1cbe8ac9c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "EasyT",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "EasyT::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-EasyT-Debug-c2ace7316703f879456b.json",
+					"name" : "EasyT",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "EasyT_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-EasyT_autogen-Debug-c4cb46ba3f40cb12429c.json",
+					"name" : "EasyT_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "EasyT_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-EasyT_autogen_timestamp_deps-Debug-e630f567f4646bc88767.json",
+					"name" : "EasyT_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/ldy/Projects/EasyT/build/Desktop_Qt_6_7_2-Debug",
+		"source" : "/home/ldy/Projects/EasyT"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
