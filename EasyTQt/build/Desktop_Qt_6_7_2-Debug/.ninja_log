@@ -1,0 +1,19 @@
+# ninja log v6
+2	255	1721863653791577052	EasyTQt_autogen/timestamp	9de7692aab1c4286
+2	255	1721863653791577052	EasyTQt_autogen/mocs_compilation.cpp	9de7692aab1c4286
+2	255	1721863653791577052	/home/ldy/Documents/GitHub/EasyT/EasyTQt/build/Desktop_Qt_6_7_2-Debug/EasyTQt_autogen/timestamp	9de7692aab1c4286
+2	255	1721863653791577052	/home/ldy/Documents/GitHub/EasyT/EasyTQt/build/Desktop_Qt_6_7_2-Debug/EasyTQt_autogen/mocs_compilation.cpp	9de7692aab1c4286
+257	3169	1721863653795577286	CMakeFiles/EasyTQt.dir/main.cpp.o	34819f0a65fba48
+257	3379	1721863653791577052	CMakeFiles/EasyTQt.dir/EasyTQt_autogen/mocs_compilation.cpp.o	6c149a74aceeeee3
+257	3423	1721863653795577286	CMakeFiles/EasyTQt.dir/mainwindow.cpp.o	8f53ea66133d4d87
+3423	3753	1721863656963760569	EasyTQt	9b4a0dda46a24799
+4	66	1721863895784907781	EasyTQt_autogen/timestamp	9de7692aab1c4286
+4	66	1721863895784907781	EasyTQt_autogen/mocs_compilation.cpp	9de7692aab1c4286
+4	66	1721863895784907781	/home/ldy/Documents/GitHub/EasyT/EasyTQt/build/Desktop_Qt_6_7_2-Debug/EasyTQt_autogen/timestamp	9de7692aab1c4286
+4	66	1721863895784907781	/home/ldy/Documents/GitHub/EasyT/EasyTQt/build/Desktop_Qt_6_7_2-Debug/EasyTQt_autogen/mocs_compilation.cpp	9de7692aab1c4286
+3	15	1721863909857296431	EasyTQt_autogen/timestamp	9de7692aab1c4286
+3	15	1721863909857296431	EasyTQt_autogen/mocs_compilation.cpp	9de7692aab1c4286
+3	15	1721863909857296431	/home/ldy/Documents/GitHub/EasyT/EasyTQt/build/Desktop_Qt_6_7_2-Debug/EasyTQt_autogen/timestamp	9de7692aab1c4286
+3	15	1721863909857296431	/home/ldy/Documents/GitHub/EasyT/EasyTQt/build/Desktop_Qt_6_7_2-Debug/EasyTQt_autogen/mocs_compilation.cpp	9de7692aab1c4286
+15	1876	1721863909869296760	CMakeFiles/EasyTQt.dir/mainwindow.cpp.o	8f53ea66133d4d87
+1876	2242	1721863911729347549	EasyTQt	9b4a0dda46a24799

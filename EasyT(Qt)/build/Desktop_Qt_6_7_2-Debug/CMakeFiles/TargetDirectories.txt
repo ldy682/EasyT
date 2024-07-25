@@ -1,9 +1,0 @@
-/home/ldy/Projects/EasyT/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/EasyT.dir
-/home/ldy/Projects/EasyT/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/edit_cache.dir
-/home/ldy/Projects/EasyT/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/rebuild_cache.dir
-/home/ldy/Projects/EasyT/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/list_install_components.dir
-/home/ldy/Projects/EasyT/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/install.dir
-/home/ldy/Projects/EasyT/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/install/local.dir
-/home/ldy/Projects/EasyT/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/install/strip.dir
-/home/ldy/Projects/EasyT/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/EasyT_autogen_timestamp_deps.dir
-/home/ldy/Projects/EasyT/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/EasyT_autogen.dir
