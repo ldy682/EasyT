@@ -81,6 +81,14 @@ build CMakeFiles/EasyTQt.dir/terminaltextedit.cpp.o: CXX_COMPILER__EasyTQt_unsca
   OBJECT_DIR = CMakeFiles/EasyTQt.dir
   OBJECT_FILE_DIR = CMakeFiles/EasyTQt.dir
 
+build CMakeFiles/EasyTQt.dir/filecontainer.cpp.o: CXX_COMPILER__EasyTQt_unscanned_Debug /home/ldy/Documents/GitHub/EasyT/EasyTQt/filecontainer.cpp || cmake_object_order_depends_target_EasyTQt
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/EasyTQt.dir/filecontainer.cpp.o.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always -fPIC
+  INCLUDES = -I/home/ldy/Documents/GitHub/EasyT/EasyTQt/build/Desktop_Qt_6_7_2-Debug/EasyTQt_autogen/include -isystem /home/ldy/Qt/6.7.2/gcc_64/include/QtCore -isystem /home/ldy/Qt/6.7.2/gcc_64/include -isystem /home/ldy/Qt/6.7.2/gcc_64/mkspecs/linux-g++ -isystem /home/ldy/Qt/6.7.2/gcc_64/include/QtWidgets -isystem /home/ldy/Qt/6.7.2/gcc_64/include/QtGui
+  OBJECT_DIR = CMakeFiles/EasyTQt.dir
+  OBJECT_FILE_DIR = CMakeFiles/EasyTQt.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target EasyTQt
@@ -89,7 +97,7 @@ build CMakeFiles/EasyTQt.dir/terminaltextedit.cpp.o: CXX_COMPILER__EasyTQt_unsca
 #############################################
 # Link the executable EasyTQt
 
-build EasyTQt: CXX_EXECUTABLE_LINKER__EasyTQt_Debug CMakeFiles/EasyTQt.dir/EasyTQt_autogen/mocs_compilation.cpp.o CMakeFiles/EasyTQt.dir/main.cpp.o CMakeFiles/EasyTQt.dir/mainwindow.cpp.o CMakeFiles/EasyTQt.dir/terminaltextedit.cpp.o | /home/ldy/Qt/6.7.2/gcc_64/lib/libQt6Widgets.so.6.7.2 /home/ldy/Qt/6.7.2/gcc_64/lib/libQt6Gui.so.6.7.2 /home/ldy/Qt/6.7.2/gcc_64/lib/libQt6Core.so.6.7.2 /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libOpenGL.so || EasyTQt_autogen EasyTQt_autogen_timestamp_deps
+build EasyTQt: CXX_EXECUTABLE_LINKER__EasyTQt_Debug CMakeFiles/EasyTQt.dir/EasyTQt_autogen/mocs_compilation.cpp.o CMakeFiles/EasyTQt.dir/main.cpp.o CMakeFiles/EasyTQt.dir/mainwindow.cpp.o CMakeFiles/EasyTQt.dir/terminaltextedit.cpp.o CMakeFiles/EasyTQt.dir/filecontainer.cpp.o | /home/ldy/Qt/6.7.2/gcc_64/lib/libQt6Widgets.so.6.7.2 /home/ldy/Qt/6.7.2/gcc_64/lib/libQt6Gui.so.6.7.2 /home/ldy/Qt/6.7.2/gcc_64/lib/libQt6Core.so.6.7.2 /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libOpenGL.so || EasyTQt_autogen EasyTQt_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_LIBRARIES = -Wl,-rpath,/home/ldy/Qt/6.7.2/gcc_64/lib:  /home/ldy/Qt/6.7.2/gcc_64/lib/libQt6Widgets.so.6.7.2  /home/ldy/Qt/6.7.2/gcc_64/lib/libQt6Gui.so.6.7.2  /home/ldy/Qt/6.7.2/gcc_64/lib/libQt6Core.so.6.7.2  /usr/lib/x86_64-linux-gnu/libGLX.so  /usr/lib/x86_64-linux-gnu/libOpenGL.so
   OBJECT_DIR = CMakeFiles/EasyTQt.dir

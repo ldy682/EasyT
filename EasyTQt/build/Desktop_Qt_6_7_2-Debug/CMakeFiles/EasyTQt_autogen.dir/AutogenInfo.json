@@ -364,6 +364,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/home/ldy/Documents/GitHub/EasyT/EasyTQt/filecontainer.h",
+			"MU",
+			"EWIEGA46WW/moc_filecontainer.cpp",
+			null
+		],
+		[
 			"/home/ldy/Documents/GitHub/EasyT/EasyTQt/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -435,6 +441,11 @@
 	"SETTINGS_FILE" : "/home/ldy/Documents/GitHub/EasyT/EasyTQt/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/EasyTQt_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"/home/ldy/Documents/GitHub/EasyT/EasyTQt/filecontainer.cpp",
+			"MU",
+			null
+		],
 		[ "/home/ldy/Documents/GitHub/EasyT/EasyTQt/main.cpp", "MU", null ],
 		[ "/home/ldy/Documents/GitHub/EasyT/EasyTQt/mainwindow.cpp", "MU", null ],
 		[

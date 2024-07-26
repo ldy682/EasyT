@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-54feb814e08f2676c3bc.json",
+					"jsonFile" : "directory-.-Debug-a739099236748b01ead4.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "EasyTQt::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-EasyTQt-Debug-7f6b610d6ae37518f9e5.json",
+					"jsonFile" : "target-EasyTQt-Debug-33fcac57cfe6ed0d380b.json",
 					"name" : "EasyTQt",
 					"projectIndex" : 0
 				},
