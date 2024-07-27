@@ -9,6 +9,8 @@
 #include <QLineEdit>
 #include <QSpacerItem>
 #include <QMargins>
+#include <QScrollArea>
+#include <QString>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -29,13 +31,16 @@ MainWindow::MainWindow(QWidget *parent)
     QVBoxLayout *vBox = new QVBoxLayout(widgetContainer);
     vBox->setContentsMargins(0,0,0,0);
 
-    FileContainer *file = new FileContainer(widgetContainer, "smth");
-    FileContainer *file2 = new FileContainer(widgetContainer, "smth2");
-
-    vBox->addWidget(file);
-    vBox->addWidget(file2);
+    for(int i = 0; i < 5; i++){
+        FileContainer *file = new FileContainer(widgetContainer, "");
+        file->setText(QString::number(i));
+        vBox->addWidget(file);
+    }
+    // vBox->addStretch();
+    QScrollArea *scrollArea = new QScrollArea(dockWidget);
+    scrollArea->setWidget(widgetContainer);
+    scrollArea->setWidgetResizable(true);
     vBox->addStretch();
-
 
     dockWidget->setWidget(widgetContainer);
 
