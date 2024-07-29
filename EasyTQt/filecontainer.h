@@ -1,12 +1,15 @@
 #ifndef FILECONTAINER_H
 #define FILECONTAINER_H
 
-#include <QLineEdit>
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QDir>
+#include <QScrollArea>
 
-class FileContainer: public QLineEdit
+class FileContainer: public QScrollArea
 {
 public:
-    FileContainer(QWidget *parent, QString filename);
+    FileContainer(QWidget *parent);
     ~FileContainer();
 };
 

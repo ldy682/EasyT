@@ -1,9 +1,19 @@
 #include "filecontainer.h"
+#include <QStringList>
+#include <QDebug>
 
-FileContainer::FileContainer(QWidget *parent, QString filename): QLineEdit(parent) {
-    this->setReadOnly(true);
-    this->setText(filename);
-    this->setFrame(false);
+FileContainer::FileContainer(QWidget *parent): QScrollArea(parent) {
+    QDir curDir = QDir::currentPath();
+    QStringList filenames = curDir.entryList();
+
+    QVBoxLayout *scrollLayout = new QVBoxLayout(this);
+    foreach(QString file, filenames){
+        scrollLayout->addWidget(new QLabel(file));
+    }
+    QWidget *scrollWidget = new QWidget(this);
+    scrollWidget->setLayout(scrollLayout);
+
+    this->setWidget(scrollWidget);
 }
 
 FileContainer::~FileContainer(){

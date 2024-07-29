@@ -11,6 +11,7 @@
 #include <QMargins>
 #include <QScrollArea>
 #include <QString>
+#include <QScrollBar>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -23,26 +24,13 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(textEdit);
 
     // set up for file bar on the left
-    QDockWidget *dockWidget = new QDockWidget("Files Location", this);
+    QDockWidget *dockWidget = new QDockWidget("Current Directory Files", this);
     dockWidget->setFeatures(QDockWidget::DockWidgetMovable);
     addDockWidget(Qt::LeftDockWidgetArea, dockWidget);
 
-    QWidget *widgetContainer = new QWidget(dockWidget);
-    QVBoxLayout *vBox = new QVBoxLayout(widgetContainer);
-    vBox->setContentsMargins(0,0,0,0);
+    FileContainer *files = new FileContainer(this);
 
-    for(int i = 0; i < 5; i++){
-        FileContainer *file = new FileContainer(widgetContainer, "");
-        file->setText(QString::number(i));
-        vBox->addWidget(file);
-    }
-    // vBox->addStretch();
-    QScrollArea *scrollArea = new QScrollArea(dockWidget);
-    scrollArea->setWidget(widgetContainer);
-    scrollArea->setWidgetResizable(true);
-    vBox->addStretch();
-
-    dockWidget->setWidget(widgetContainer);
+    dockWidget->setWidget(files);
 
 }
 
