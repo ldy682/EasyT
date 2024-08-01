@@ -16,6 +16,8 @@ EasyTQt_autogen/timestamp: \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/QRect \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/QSize \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/QSizeF \
+	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/QStack \
+	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/QString \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/q20functional.h \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/q20memory.h \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/q20type_traits.h \
@@ -103,6 +105,7 @@ EasyTQt_autogen/timestamp: \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qsharedpointer.h \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qsize.h \
+	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qstack.h \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qstring.h \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qstringalgorithms.h \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qstringbuilder.h \
@@ -143,6 +146,7 @@ EasyTQt_autogen/timestamp: \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qversiontagging.h \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qxptype_traits.h \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qyieldcpu.h \
+	/home/ldy/Qt/6.7.2/gcc_64/include/QtGui/QKeyEvent \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtGui/QTransform \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
 	/home/ldy/Qt/6.7.2/gcc_64/include/QtGui/qaction.h \

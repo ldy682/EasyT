@@ -419,6 +419,8 @@
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/QRect
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/QSize
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/QSizeF
+ mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/QStack
+ mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/QString
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/q20functional.h
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/q20memory.h
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/q20type_traits.h
@@ -506,6 +508,7 @@
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qsharedpointer.h
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qsharedpointer_impl.h
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qsize.h
+ mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qstack.h
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qstring.h
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qstringalgorithms.h
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qstringbuilder.h
@@ -546,6 +549,7 @@
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qversiontagging.h
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qxptype_traits.h
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtCore/qyieldcpu.h
+ mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtGui/QKeyEvent
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtGui/QTransform
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtGui/qabstracttextdocumentlayout.h
  mdp:/home/ldy/Qt/6.7.2/gcc_64/include/QtGui/qaction.h

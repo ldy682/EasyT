@@ -11,7 +11,11 @@ class FileContainer: public QScrollArea
 {
 public:
     FileContainer(QWidget *parent);
+    void setDirectory();
+    void getCurDirectory();
     ~FileContainer();
+private:
+
 };
 
 #endif // FILECONTAINER_H
