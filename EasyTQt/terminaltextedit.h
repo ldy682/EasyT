@@ -1,9 +1,9 @@
 #ifndef TERMINALTEXTEDIT_H
 #define TERMINALTEXTEDIT_H
 
-#include <QTextEdit>
+#include <QPlainTextEdit>
 
-class TerminalTextEdit : public QTextEdit
+class TerminalTextEdit : public QPlainTextEdit
 {
 Q_OBJECT
 public:

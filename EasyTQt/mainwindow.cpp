@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(textEdit);
 
     // set up for file bar on the left
-    QDockWidget *dockWidget = new QDockWidget("Current Directory Files", this);
+    QDockWidget *dockWidget = new QDockWidget("Current Directory Content", this);
     dockWidget->setFeatures(QDockWidget::DockWidgetMovable);
     addDockWidget(Qt::LeftDockWidgetArea, dockWidget);
 

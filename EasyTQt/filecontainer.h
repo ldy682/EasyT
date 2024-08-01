@@ -1,3 +1,4 @@
+// Contains the display of files in the current directory meant to be docked
 #ifndef FILECONTAINER_H
 #define FILECONTAINER_H
 
