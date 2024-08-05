@@ -2,10 +2,11 @@
 #include <QFont>
 #include <QTextCursor>
 
-TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent),
-    prompt(QString("$ ")) {
-    this->setFont(QFont("Monospace", 10));
-    this->setCursorWidth(10);
+TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
+    // this->setFont(QFont("Monospace", 15));
+    this->setCursorWidth(9);
+    this->setStyleSheet("TerminalTextEdit {font-family: MonoSpace; font-size: 18px;}");
+    setPrompt("$ ");
     insertPlainText(prompt);
 }
 
@@ -44,8 +45,9 @@ void TerminalTextEdit::handleEnter(){
     QTextCursor curs = this->textCursor();
     curs.select(QTextCursor::LineUnderCursor);
     QString inp = curs.selectedText();
+    inp.remove(0, prompt.length());
     upHistory.push(inp);
-
+    clearLine();
     return ;
 }
 
@@ -83,6 +85,7 @@ void TerminalTextEdit::clearLine(){
     QTextCursor curs = this->textCursor();
     curs.select(QTextCursor::LineUnderCursor);
     curs.clearSelection();
+    insertPlainText("\n");
     insertPlainText(getPrompt());
     return;
 }
