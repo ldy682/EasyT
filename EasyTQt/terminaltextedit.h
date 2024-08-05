@@ -26,6 +26,7 @@ private:
     void clearLine();
     QStack<QString> upHistory;
     QStack<QString> downHistory;
+    bool skip;
     QString prompt;
 };
 

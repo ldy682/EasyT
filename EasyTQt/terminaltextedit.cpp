@@ -3,7 +3,7 @@
 #include <QTextCursor>
 
 TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
-    // this->setFont(QFont("Monospace", 15));
+    skip = false;
     this->setCursorWidth(9);
     this->setStyleSheet("TerminalTextEdit {font-family: MonoSpace; font-size: 18px;}");
     setPrompt("$ ");
@@ -69,16 +69,24 @@ void TerminalTextEdit::handleUp(){
     downHistory.push(cmd);
     clearLine();
     insertPlainText(cmd);
+    skip = true;
 }
 
 void TerminalTextEdit::handleDown(){
-    if(downHistory.count() < 1){
-        return;
+    if(skip && downHistory.count() > 1){
+        upHistory.push(downHistory.pop());
+        skip = false;
     }
-    QString cmd = downHistory.pop();
-    upHistory.push(cmd);
-    clearLine();
-    insertPlainText(cmd);
+    if(downHistory.count() > 0){
+        QString cmd = downHistory.pop();
+        upHistory.push(cmd);
+        clearLine();
+        insertPlainText(cmd);
+    }
+    else{
+        clearLine();
+    }
+
 }
 
 void TerminalTextEdit::clearLine(){
