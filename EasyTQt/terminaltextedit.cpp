@@ -1,6 +1,7 @@
 #include "terminaltextedit.h"
 #include <QFont>
 #include <QTextCursor>
+#include <QTextBlock>
 
 TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
     skip = false;
@@ -46,19 +47,26 @@ void TerminalTextEdit::handleEnter(){
     curs.select(QTextCursor::LineUnderCursor);
     QString inp = curs.selectedText();
     inp.remove(0, prompt.length());
+    // insertPlainText(QString::number(prompt.length()));
     upHistory.push(inp);
+    insertPlainText("\n");
     clearLine();
     return ;
 }
 
 void TerminalTextEdit::handleBackSpace(QKeyEvent *e){
-    QPlainTextEdit::keyPressEvent(e);
-    // set a limit to how much backspace the user can do
+    if(notPrompt()){
+        QPlainTextEdit::keyPressEvent(e);
+        // set a limit to how much backspace the user can do
+    }
+
 }
 
 void TerminalTextEdit::handleLeft(QKeyEvent *e){
-    QPlainTextEdit::keyPressEvent(e);
-    // handle similarly to backspace
+    if(notPrompt()){
+        QPlainTextEdit::keyPressEvent(e);
+        // handle similarly to backspace
+    }
 }
 
 void TerminalTextEdit::handleUp(){
@@ -93,9 +101,20 @@ void TerminalTextEdit::clearLine(){
     QTextCursor curs = this->textCursor();
     curs.select(QTextCursor::LineUnderCursor);
     curs.clearSelection();
-    insertPlainText("\n");
     insertPlainText(getPrompt());
     return;
+}
+
+bool TerminalTextEdit::notPrompt(){
+    QTextCursor cursor = textCursor();
+    QTextBlock block = cursor.block();
+    int pos = cursor.position() - block.position();
+    if(pos > prompt.length()){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 TerminalTextEdit::~TerminalTextEdit(){

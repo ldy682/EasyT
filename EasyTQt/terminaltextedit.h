@@ -27,6 +27,7 @@ private:
     QStack<QString> upHistory;
     QStack<QString> downHistory;
     bool skip;
+    bool notPrompt();
     QString prompt;
 };
 
