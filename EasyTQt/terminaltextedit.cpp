@@ -48,7 +48,11 @@ void TerminalTextEdit::handleEnter(){
     QString inp = curs.selectedText();
     inp.remove(0, prompt.length());
     // insertPlainText(QString::number(prompt.length()));
-    upHistory.push(inp);
+
+    // checks if there was an input
+    if(inp.length() > 0){
+        upHistory.push(inp);
+    }
     insertPlainText("\n");
     clearLine();
     return ;
@@ -100,7 +104,7 @@ void TerminalTextEdit::handleDown(){
 void TerminalTextEdit::clearLine(){
     QTextCursor curs = this->textCursor();
     curs.select(QTextCursor::LineUnderCursor);
-    curs.clearSelection();
+    curs.removeSelectedText();
     insertPlainText(getPrompt());
     return;
 }
