@@ -61,7 +61,6 @@ void TerminalTextEdit::handleEnter(){
 void TerminalTextEdit::handleBackSpace(QKeyEvent *e){
     if(notPrompt()){
         QPlainTextEdit::keyPressEvent(e);
-        // set a limit to how much backspace the user can do
     }
 
 }
@@ -69,7 +68,6 @@ void TerminalTextEdit::handleBackSpace(QKeyEvent *e){
 void TerminalTextEdit::handleLeft(QKeyEvent *e){
     if(notPrompt()){
         QPlainTextEdit::keyPressEvent(e);
-        // handle similarly to backspace
     }
 }
 
@@ -85,7 +83,7 @@ void TerminalTextEdit::handleUp(){
 }
 
 void TerminalTextEdit::handleDown(){
-    if(skip && downHistory.count() > 1){
+    if(skip && downHistory.count() > 0){
         upHistory.push(downHistory.pop());
         skip = false;
     }
