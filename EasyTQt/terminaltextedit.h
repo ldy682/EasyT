@@ -29,6 +29,10 @@ private:
     bool skip;
     bool notPrompt();
     QString prompt;
+signals:
+    void sendCmd(QString cmd);
+public slots:
+    void recvRes(QString res);
 };
 
 #endif // TERMINALTEXTEDIT_H
