@@ -49,6 +49,9 @@ void TerminalTextEdit::handleEnter(){
     inp.remove(0, prompt.length());
     // insertPlainText(QString::number(prompt.length()));
 
+    while(downHistory.length() > 0){
+        upHistory.push(downHistory.pop());
+    }
     // checks if there was an input
     if(inp.length() > 0){
         upHistory.push(inp);
