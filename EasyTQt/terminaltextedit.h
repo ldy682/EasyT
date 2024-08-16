@@ -32,7 +32,7 @@ private:
 signals:
     void sendCmd(QString cmd);
 public slots:
-    void recvRes(QString res);
+    void recvRes(QString cmd);
 };
 
 #endif // TERMINALTEXTEDIT_H

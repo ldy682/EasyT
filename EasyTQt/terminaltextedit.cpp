@@ -104,7 +104,9 @@ void TerminalTextEdit::handleDown(){
 }
 //---------------------------------- helper functions ----------------------------------//
 
-void TerminalTextEdit::recvRes(QString res){
+void TerminalTextEdit::recvRes(QString cmd){
+    //
+    insertPlainText(res + "hehe");
     return;
 }
 
