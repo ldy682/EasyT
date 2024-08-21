@@ -32,6 +32,7 @@ private:
     // this is used for making the master and slave connection to talk to the shell
     int aMaster;
     int aSlave;
+    pid_t pid;
 
 signals:
     void sendCmd(QString cmd);

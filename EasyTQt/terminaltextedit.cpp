@@ -5,7 +5,11 @@
 #include <pty.h>
 #include <unistd.h>
 #include <termios.h>
-#include <pty.h>
+#include <sys/ioctl.h>
+#include <utmp.h>
+#include <sys/select.h>
+#include <fcntl.h>
+#include <signal.h>
 
 TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
     skip = false;
@@ -18,7 +22,7 @@ TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
         throw std::runtime_error("openpty failed");
     }
 
-    pid_t pid = fork();
+    pid = fork();
     switch(pid){
     case -1:
         throw std::runtime_error("failed to fork");
@@ -33,6 +37,7 @@ TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
         execlp("/bin/sh", "/bin/sh", nullptr);
         break;
     default:
+
         break;
     }
 }
@@ -131,7 +136,33 @@ void TerminalTextEdit::handleDown(){
 
 void TerminalTextEdit::recvRes(QString cmd){
     //
-    insertPlainText(cmd + "hehe");
+    // insertPlainText(cmd + "hehe");
+
+    int flags = fcntl(aMaster, F_GETFL, 0);
+    fcntl(aMaster, F_SETFL, flags | O_NONBLOCK);
+
+    QByteArray byteArray = cmd.toUtf8();
+    char* input = byteArray.data();
+
+    write(aMaster, input.c_str(), input.size());
+    write(aMaster, "\n", 1);
+    timeval tv;
+    fd_set rfds;
+
+    char c;
+    do{
+        FD_ZERO(&rfds);
+        FD_SET(aMaster, &rfds);
+
+        tv.tv_sec = 1;
+        tv.tv_usec = 100000;
+        select(aMaster+1, &rfds, NULL, NULL, &tv);
+
+        if(FD_ISSET(aMaster, &rfds)){
+            read(aMaster, &c, 1);
+            cout<<c<<std::flush;
+        }
+    } while(FD_ISSET(aMaster, &rfds));
     return;
 }
 
@@ -156,5 +187,7 @@ bool TerminalTextEdit::notPrompt(){
 }
 
 TerminalTextEdit::~TerminalTextEdit(){
-
+    ::close(aMaster);
+    ::close(aSlave);
+    kill(pid, SIGTERM);
 }
