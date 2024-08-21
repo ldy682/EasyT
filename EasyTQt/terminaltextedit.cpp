@@ -2,6 +2,10 @@
 #include <QFont>
 #include <QTextCursor>
 #include <QTextBlock>
+#include <pty.h>
+#include <unistd.h>
+#include <termios.h>
+#include <pty.h>
 
 TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
     skip = false;
@@ -10,6 +14,27 @@ TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
     setPrompt("$ ");
     insertPlainText(prompt);
     QObject::connect(this, &TerminalTextEdit::sendCmd, this, &TerminalTextEdit::recvRes);
+    if(openpty(&aMaster, &aSlave, nullptr, nullptr, nullptr) == -1){
+        throw std::runtime_error("openpty failed");
+    }
+
+    pid_t pid = fork();
+    switch(pid){
+    case -1:
+        throw std::runtime_error("failed to fork");
+        break;
+    case 0:
+        // uses global close function
+        ::close(aMaster);
+        if(login_tty(aSlave) == -1){
+            throw std::runtime_error("login_tty failed");
+        }
+        ::close(aSlave);
+        execlp("/bin/sh", "/bin/sh", nullptr);
+        break;
+    default:
+        break;
+    }
 }
 
 void TerminalTextEdit::setPrompt(QString str){
@@ -106,7 +131,7 @@ void TerminalTextEdit::handleDown(){
 
 void TerminalTextEdit::recvRes(QString cmd){
     //
-    insertPlainText(res + "hehe");
+    insertPlainText(cmd + "hehe");
     return;
 }
 

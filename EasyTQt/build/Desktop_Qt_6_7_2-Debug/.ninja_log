@@ -92,3 +92,16 @@
 65	7348	1723770216583663582	CMakeFiles/EasyTQt.dir/terminaltextedit.cpp.o	8f9d30e69f4aaa80
 61	8019	1723770216579663534	CMakeFiles/EasyTQt.dir/mainwindow.cpp.o	8f53ea66133d4d87
 8019	8757	1723770224535760851	EasyTQt	4bc571ad6884f773
+76	1824	1723789312973945950	EasyTQt_autogen/timestamp	9de7692aab1c4286
+76	1824	1723789312973945950	EasyTQt_autogen/mocs_compilation.cpp	9de7692aab1c4286
+76	1824	1723789312973945950	/home/ldy/Documents/GitHub/EasyT/EasyTQt/build/Desktop_Qt_6_7_2-Debug/EasyTQt_autogen/timestamp	9de7692aab1c4286
+76	1824	1723789312973945950	/home/ldy/Documents/GitHub/EasyT/EasyTQt/build/Desktop_Qt_6_7_2-Debug/EasyTQt_autogen/mocs_compilation.cpp	9de7692aab1c4286
+1826	21460	1723789313036927188	CMakeFiles/EasyTQt.dir/EasyTQt_autogen/mocs_compilation.cpp.o	6c149a74aceeeee3
+1834	24395	1723789313046924249	CMakeFiles/EasyTQt.dir/mainwindow.cpp.o	8f53ea66133d4d87
+52	136	1723789463986760138	EasyTQt_autogen/timestamp	9de7692aab1c4286
+52	136	1723789463986760138	EasyTQt_autogen/mocs_compilation.cpp	9de7692aab1c4286
+52	136	1723789463986760138	/home/ldy/Documents/GitHub/EasyT/EasyTQt/build/Desktop_Qt_6_7_2-Debug/EasyTQt_autogen/timestamp	9de7692aab1c4286
+52	136	1723789463986760138	/home/ldy/Documents/GitHub/EasyT/EasyTQt/build/Desktop_Qt_6_7_2-Debug/EasyTQt_autogen/mocs_compilation.cpp	9de7692aab1c4286
+139	13645	1723789464073779749	CMakeFiles/EasyTQt.dir/terminaltextedit.cpp.o	8f9d30e69f4aaa80
+137	16552	1723789464071779298	CMakeFiles/EasyTQt.dir/mainwindow.cpp.o	8f53ea66133d4d87
+16553	18867	1723789480487579294	EasyTQt	4bc571ad6884f773

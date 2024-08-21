@@ -22,13 +22,17 @@ private:
     void handleBackSpace(QKeyEvent *e);
     void handleUp();
     void handleDown();
-
     void clearLine();
     QStack<QString> upHistory;
     QStack<QString> downHistory;
     bool skip;
     bool notPrompt();
     QString prompt;
+
+    // this is used for making the master and slave connection to talk to the shell
+    int aMaster;
+    int aSlave;
+
 signals:
     void sendCmd(QString cmd);
 public slots:
