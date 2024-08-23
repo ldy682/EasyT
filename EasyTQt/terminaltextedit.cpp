@@ -144,7 +144,7 @@ void TerminalTextEdit::recvRes(QString cmd){
     QByteArray byteArray = cmd.toUtf8();
     char* input = byteArray.data();
 
-    write(aMaster, input.c_str(), input.size());
+    write(aMaster, input, cmd.size());
     write(aMaster, "\n", 1);
     timeval tv;
     fd_set rfds;
@@ -160,7 +160,6 @@ void TerminalTextEdit::recvRes(QString cmd){
 
         if(FD_ISSET(aMaster, &rfds)){
             read(aMaster, &c, 1);
-            cout<<c<<std::flush;
         }
     } while(FD_ISSET(aMaster, &rfds));
     return;
