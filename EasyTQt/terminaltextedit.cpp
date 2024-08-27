@@ -15,7 +15,7 @@ TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
     skip = false;
     this->setCursorWidth(9);
     this->setStyleSheet("TerminalTextEdit {font-family: MonoSpace; font-size: 18px;}");
-    setPrompt("$ ");
+    setPrompt("φ ");
     insertPlainText(prompt);
     QObject::connect(this, &TerminalTextEdit::sendCmd, this, &TerminalTextEdit::recvRes);
     if(openpty(&aMaster, &aSlave, nullptr, nullptr, nullptr) == -1){
@@ -85,8 +85,14 @@ void TerminalTextEdit::handleEnter(){
     }
     // checks if there was an input
     if(inp.length() > 0){
-        upHistory.push(inp);
-        emit sendCmd(inp);
+        if(inp == "clear"){
+            clear();
+            // clearLine();
+        }
+        else{
+            upHistory.push(inp);
+            emit sendCmd(inp);
+        }
     }
     insertPlainText("\n");
     clearLine();
@@ -160,6 +166,7 @@ void TerminalTextEdit::recvRes(QString cmd){
 
         if(FD_ISSET(aMaster, &rfds)){
             read(aMaster, &c, 1);
+            insertPlainText(QString::fromUtf8(&c));
         }
     } while(FD_ISSET(aMaster, &rfds));
     return;
