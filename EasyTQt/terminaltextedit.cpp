@@ -95,7 +95,6 @@ void TerminalTextEdit::handleEnter(){
             emit sendCmd(inp);
         }
     }
-    insertPlainText("\n");
     clearLine();
     return ;
 }
@@ -209,7 +208,6 @@ QString TerminalTextEdit::cleanResult(QString str){
     QStringList tmp = str.split("\n");
     if(!tmp.isEmpty()){
         tmp.removeFirst();
-        tmp.removeLast();
         tmp.removeLast();
     }
     tmp.prepend("\n");
