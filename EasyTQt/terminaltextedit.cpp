@@ -146,7 +146,7 @@ void TerminalTextEdit::recvRes(QString cmd){
 
     int flags = fcntl(aMaster, F_GETFL, 0);
     fcntl(aMaster, F_SETFL, flags | O_NONBLOCK);
-
+    // cmd = "stty -echo; " + cmd;
     QByteArray byteArray = cmd.toUtf8();
     char* input = byteArray.data();
 
@@ -156,19 +156,24 @@ void TerminalTextEdit::recvRes(QString cmd){
     fd_set rfds;
 
     char c;
+    char buffer[1024];
+    int index = 0;
+    int retval = 0;
     do{
         FD_ZERO(&rfds);
         FD_SET(aMaster, &rfds);
 
-        tv.tv_sec = 1;
+        tv.tv_sec = 0;
         tv.tv_usec = 100000;
-        select(aMaster+1, &rfds, NULL, NULL, &tv);
+        retval = select(aMaster+1, &rfds, NULL, NULL, &tv);
 
-        if(FD_ISSET(aMaster, &rfds)){
+        if(retval > 0 && FD_ISSET(aMaster, &rfds)){
             read(aMaster, &c, 1);
-            insertPlainText(QString::fromUtf8(&c));
+            buffer[index++] = c;
         }
-    } while(FD_ISSET(aMaster, &rfds));
+    } while(retval > 0 && FD_ISSET(aMaster, &rfds));
+    buffer[index] = '\0';
+    insertPlainText(buffer);
     return;
 }
 
@@ -193,6 +198,7 @@ bool TerminalTextEdit::notPrompt(){
 }
 
 TerminalTextEdit::~TerminalTextEdit(){
+    // closing open fds and terminating the slave
     ::close(aMaster);
     ::close(aSlave);
     kill(pid, SIGTERM);
