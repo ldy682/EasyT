@@ -2,6 +2,7 @@
 #include <QFont>
 #include <QTextCursor>
 #include <QTextBlock>
+#include <QStringList>
 #include <pty.h>
 #include <unistd.h>
 #include <termios.h>
@@ -158,22 +159,22 @@ void TerminalTextEdit::recvRes(QString cmd){
     char c;
     char buffer[1024];
     int index = 0;
-    int retval = 0;
     do{
         FD_ZERO(&rfds);
         FD_SET(aMaster, &rfds);
 
         tv.tv_sec = 0;
         tv.tv_usec = 100000;
-        retval = select(aMaster+1, &rfds, NULL, NULL, &tv);
+        select(aMaster+1, &rfds, NULL, NULL, &tv);
 
-        if(retval > 0 && FD_ISSET(aMaster, &rfds)){
+        if(FD_ISSET(aMaster, &rfds)){
             read(aMaster, &c, 1);
             buffer[index++] = c;
         }
-    } while(retval > 0 && FD_ISSET(aMaster, &rfds));
+    } while(FD_ISSET(aMaster, &rfds));
     buffer[index] = '\0';
-    insertPlainText(buffer);
+    QString res = cleanResult(QString::fromUtf8(buffer));
+    insertPlainText(res);
     return;
 }
 
@@ -202,4 +203,15 @@ TerminalTextEdit::~TerminalTextEdit(){
     ::close(aMaster);
     ::close(aSlave);
     kill(pid, SIGTERM);
+}
+
+QString TerminalTextEdit::cleanResult(QString str){
+    QStringList tmp = str.split("\n");
+    if(!tmp.isEmpty()){
+        tmp.removeFirst();
+        tmp.removeLast();
+        tmp.removeLast();
+    }
+    tmp.prepend("\n");
+    return tmp.join("");
 }

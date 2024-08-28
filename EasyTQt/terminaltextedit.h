@@ -23,6 +23,7 @@ private:
     void handleUp();
     void handleDown();
     void clearLine();
+    QString cleanResult(QString str);
     QStack<QString> upHistory;
     QStack<QString> downHistory;
     bool skip;
