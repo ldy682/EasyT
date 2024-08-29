@@ -23,11 +23,12 @@ private:
     void handleUp();
     void handleDown();
     void clearLine();
-    QString cleanResult(QString str);
+    QString cleanResult(QString str); // cleans the shell output
     QStack<QString> upHistory;
     QStack<QString> downHistory;
     bool skip;
     bool notPrompt();
+    bool isCurrentBlock(QTextBlock block);
     QString prompt;
 
     // this is used for making the master and slave connection to talk to the shell

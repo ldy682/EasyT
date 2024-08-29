@@ -100,7 +100,7 @@ void TerminalTextEdit::handleEnter(){
 }
 
 void TerminalTextEdit::handleBackSpace(QKeyEvent *e){
-    if(notPrompt()){
+    if(notPrompt() && !isCurrentBlock(textCursor().block())){
         QPlainTextEdit::keyPressEvent(e);
     }
 }
@@ -136,7 +136,6 @@ void TerminalTextEdit::handleDown(){
     else{
         clearLine();
     }
-
 }
 //---------------------------------- helper functions ----------------------------------//
 
@@ -156,8 +155,8 @@ void TerminalTextEdit::recvRes(QString cmd){
     fd_set rfds;
 
     char c;
-    char buffer[1024];
     int buffsize = 1024;
+    char buffer[buffsize];
     int index = 0;
     QString res;
     do{
@@ -166,12 +165,13 @@ void TerminalTextEdit::recvRes(QString cmd){
 
         tv.tv_sec = 0;
         tv.tv_usec = 100000;
-        select(aMaster+1, &rfds, NULL, NULL, &tv);
+        select(aMaster+1, &rfds, nullptr, nullptr, &tv);
 
         if(FD_ISSET(aMaster, &rfds) && index < buffsize - 2){
             read(aMaster, &c, 1);
             buffer[index++] = c;
         }
+        // this is the case where text received > buffsize
         else if(FD_ISSET(aMaster, &rfds)){
             buffer[index] = '\0';
             res = res + cleanResult(QString::fromUtf8(buffer));
@@ -202,6 +202,10 @@ bool TerminalTextEdit::notPrompt(){
     else{
         return false;
     }
+}
+
+bool TerminalTextEdit::isCurrentBlock(QTextBlock block){
+    return block != document()->lastBlock();
 }
 
 TerminalTextEdit::~TerminalTextEdit(){
