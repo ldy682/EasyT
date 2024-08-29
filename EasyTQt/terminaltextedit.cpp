@@ -157,7 +157,9 @@ void TerminalTextEdit::recvRes(QString cmd){
 
     char c;
     char buffer[1024];
+    int buffsize = 1024;
     int index = 0;
+    QString res;
     do{
         FD_ZERO(&rfds);
         FD_SET(aMaster, &rfds);
@@ -166,13 +168,18 @@ void TerminalTextEdit::recvRes(QString cmd){
         tv.tv_usec = 100000;
         select(aMaster+1, &rfds, NULL, NULL, &tv);
 
-        if(FD_ISSET(aMaster, &rfds)){
+        if(FD_ISSET(aMaster, &rfds) && index < buffsize - 2){
             read(aMaster, &c, 1);
             buffer[index++] = c;
         }
+        else if(FD_ISSET(aMaster, &rfds)){
+            buffer[index] = '\0';
+            res = res + cleanResult(QString::fromUtf8(buffer));
+            index = 0;
+        }
     } while(FD_ISSET(aMaster, &rfds));
     buffer[index] = '\0';
-    QString res = cleanResult(QString::fromUtf8(buffer));
+    res = res + cleanResult(QString::fromUtf8(buffer));
     insertPlainText(res);
     return;
 }
