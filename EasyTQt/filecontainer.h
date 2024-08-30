@@ -14,7 +14,10 @@ public:
     void setDirectory();
     void getCurDirectory();
     ~FileContainer();
-private:
+public slots:
+    void refreshDirectory();
+    QVBoxLayout *scrollLayout;
+    QWidget *scrollWidget;
 
 };
 

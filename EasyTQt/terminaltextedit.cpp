@@ -19,6 +19,7 @@ TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
     setPrompt("φ ");
     insertPlainText(prompt);
     QObject::connect(this, &TerminalTextEdit::sendCmd, this, &TerminalTextEdit::recvRes);
+    QObject::connect(this, &TerminalTextEdit::cursorPositionChanged, this, &TerminalTextEdit::redirectCursor);
     if(openpty(&aMaster, &aSlave, nullptr, nullptr, nullptr) == -1){
         throw std::runtime_error("openpty failed");
     }
@@ -223,4 +224,11 @@ QString TerminalTextEdit::cleanResult(QString str){
     }
     tmp.prepend("\n");
     return tmp.join("");
+}
+
+void TerminalTextEdit::redirectCursor(){
+    // if(!isCurrentBlock(textCursor().block())){
+    //     // textCursor().setPosition(2);
+
+    // }
 }

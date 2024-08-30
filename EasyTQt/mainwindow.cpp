@@ -29,9 +29,8 @@ MainWindow::MainWindow(QWidget *parent)
     addDockWidget(Qt::LeftDockWidgetArea, dockWidget);
 
     FileContainer *files = new FileContainer(this);
-
     dockWidget->setWidget(files);
-
+    QObject::connect(textEdit, &TerminalTextEdit::sendCmd, files, &FileContainer::refreshDirectory);
 }
 
 MainWindow::~MainWindow()

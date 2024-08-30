@@ -40,6 +40,7 @@ signals:
     void sendCmd(QString cmd);
 public slots:
     void recvRes(QString cmd);
+    void redirectCursor();
 };
 
 #endif // TERMINALTEXTEDIT_H
