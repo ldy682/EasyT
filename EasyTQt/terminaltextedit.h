@@ -15,6 +15,8 @@ public:
 protected:
     void keyPressEvent(QKeyEvent *e);
     void setPrompt(QString str);
+    void mousePressEvent(QMouseEvent *e);
+    void mouseDoubleClickEvent(QMouseEvent *e);
     QString getPrompt();
 private:
     void handleLeft(QKeyEvent *e);

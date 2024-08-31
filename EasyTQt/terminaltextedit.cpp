@@ -75,6 +75,27 @@ void TerminalTextEdit::keyPressEvent(QKeyEvent *e){
     }
 }
 
+void TerminalTextEdit::mousePressEvent(QMouseEvent *e){
+    switch(e->button()){
+    case Qt::LeftButton:
+        break;
+    default:
+        QPlainTextEdit::mousePressEvent(e);
+        break;
+    }
+}
+
+void TerminalTextEdit::mouseDoubleClickEvent(QMouseEvent *e){
+    switch(e->button()){
+    case Qt::LeftButton:{
+        break;
+    }
+    default:
+        QPlainTextEdit::mouseDoubleClickEvent(e);
+        break;
+    }
+}
+
 void TerminalTextEdit::handleEnter(){
     QTextCursor curs = this->textCursor();
     curs.select(QTextCursor::LineUnderCursor);
@@ -89,7 +110,6 @@ void TerminalTextEdit::handleEnter(){
     if(inp.length() > 0){
         if(inp == "clear"){
             clear();
-            // clearLine();
         }
         else{
             upHistory.push(inp);
