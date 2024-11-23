@@ -3,6 +3,7 @@
 #include <QDebug>
 
 FileContainer::FileContainer(QWidget *parent): QScrollArea(parent) {
+    QDir::setCurrent(QDir::rootPath());
     setDirectory();
 }
 
