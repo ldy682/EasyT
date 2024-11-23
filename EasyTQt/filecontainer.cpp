@@ -8,10 +8,18 @@ FileContainer::FileContainer(QWidget *parent): QScrollArea(parent) {
 
 void FileContainer::setDirectory(){
     QDir curDir = QDir::currentPath();
-    QStringList filenames = curDir.entryList(QDir::NoDotAndDotDot | QDir::AllEntries);
+    QStringList directoryNames = curDir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs);
+    QStringList fileNames = curDir.entryList(QDir::NoDotAndDotDot | QDir::Files);
 
     scrollLayout = new QVBoxLayout(this);
-    foreach(QString file, filenames){
+    foreach(QString directory, directoryNames){
+        QLabel* label = new QLabel(directory);
+        QPalette palette = label->palette();
+        palette.setColor(QPalette::WindowText, Qt::magenta);
+        label->setPalette(palette);
+        scrollLayout->addWidget(label);
+    }
+    foreach(QString file, fileNames){
         scrollLayout->addWidget(new QLabel(file));
     }
     scrollWidget = new QWidget(this);
@@ -21,6 +29,12 @@ void FileContainer::setDirectory(){
 }
 
 void FileContainer::refreshDirectory(){
+    while (QLayoutItem* item = scrollLayout->takeAt(0)) {
+        if (QWidget* widget = item->widget()) {
+            widget->deleteLater(); // Schedule widget for deletion
+        }
+        delete item; // Delete the layout item
+    }
     setDirectory();
 }
 

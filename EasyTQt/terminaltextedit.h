@@ -15,8 +15,8 @@ public:
 protected:
     void keyPressEvent(QKeyEvent *e);
     void setPrompt(QString str);
-    void mousePressEvent(QMouseEvent *e);
-    void mouseDoubleClickEvent(QMouseEvent *e);
+    // void mousePressEvent(QMouseEvent *e);
+    // void mouseDoubleClickEvent(QMouseEvent *e);
     QString getPrompt();
 private:
     void handleLeft(QKeyEvent *e);
@@ -42,7 +42,7 @@ signals:
     void sendCmd(QString cmd);
 public slots:
     void recvRes(QString cmd);
-    void redirectCursor();
+    // void redirectCursor();
 };
 
 #endif // TERMINALTEXTEDIT_H

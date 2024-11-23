@@ -19,7 +19,7 @@ TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
     setPrompt("φ ");
     insertPlainText(prompt);
     QObject::connect(this, &TerminalTextEdit::sendCmd, this, &TerminalTextEdit::recvRes);
-    QObject::connect(this, &TerminalTextEdit::cursorPositionChanged, this, &TerminalTextEdit::redirectCursor);
+    // QObject::connect(this, &TerminalTextEdit::cursorPositionChanged, this, &TerminalTextEdit::redirectCursor);
     if(openpty(&aMaster, &aSlave, nullptr, nullptr, nullptr) == -1){
         throw std::runtime_error("openpty failed");
     }
@@ -36,7 +36,7 @@ TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
             throw std::runtime_error("login_tty failed");
         }
         ::close(aSlave);
-        execlp("/bin/sh", "/bin/sh", nullptr);
+        execlp("/bin/bash", "/bin/bash", nullptr);
         break;
     default:
 
@@ -75,26 +75,26 @@ void TerminalTextEdit::keyPressEvent(QKeyEvent *e){
     }
 }
 
-void TerminalTextEdit::mousePressEvent(QMouseEvent *e){
-    switch(e->button()){
-    case Qt::LeftButton:
-        break;
-    default:
-        QPlainTextEdit::mousePressEvent(e);
-        break;
-    }
-}
+// void TerminalTextEdit::mousePressEvent(QMouseEvent *e){
+//     switch(e->button()){
+//     case Qt::LeftButton:
+//         break;
+//     default:
+//         QPlainTextEdit::mousePressEvent(e);
+//         break;
+//     }
+// }
 
-void TerminalTextEdit::mouseDoubleClickEvent(QMouseEvent *e){
-    switch(e->button()){
-    case Qt::LeftButton:{
-        break;
-    }
-    default:
-        QPlainTextEdit::mouseDoubleClickEvent(e);
-        break;
-    }
-}
+// void TerminalTextEdit::mouseDoubleClickEvent(QMouseEvent *e){
+//     switch(e->button()){
+//     case Qt::LeftButton:{
+//         break;
+//     }
+//     default:
+//         QPlainTextEdit::mouseDoubleClickEvent(e);
+//         break;
+//     }
+// }
 
 void TerminalTextEdit::handleEnter(){
     QTextCursor curs = this->textCursor();
@@ -246,9 +246,9 @@ QString TerminalTextEdit::cleanResult(QString str){
     return tmp.join("");
 }
 
-void TerminalTextEdit::redirectCursor(){
-    // if(!isCurrentBlock(textCursor().block())){
-    //     // textCursor().setPosition(2);
+// void TerminalTextEdit::redirectCursor(){
+//     // if(!isCurrentBlock(textCursor().block())){
+//     //     // textCursor().setPosition(2);
 
-    // }
-}
+//     // }
+// }
