@@ -11,6 +11,8 @@
 #include <sys/select.h>
 #include <fcntl.h>
 #include <signal.h>
+#include <ostream>
+#include <iostream>
 
 TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
     skip = false;
@@ -20,6 +22,7 @@ TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
     insertPlainText(prompt);
     QObject::connect(this, &TerminalTextEdit::sendCmd, this, &TerminalTextEdit::recvRes);
     // QObject::connect(this, &TerminalTextEdit::cursorPositionChanged, this, &TerminalTextEdit::redirectCursor);
+    shell = getenv("SHELL");
     if(openpty(&aMaster, &aSlave, nullptr, nullptr, nullptr) == -1){
         throw std::runtime_error("openpty failed");
     }
@@ -36,7 +39,7 @@ TerminalTextEdit::TerminalTextEdit(QWidget *parent) : QPlainTextEdit(parent) {
             throw std::runtime_error("login_tty failed");
         }
         ::close(aSlave);
-        execlp("/bin/bash", "/bin/bash", nullptr);
+        execlp(shell, shell, nullptr);
         break;
     default:
 

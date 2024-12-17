@@ -37,6 +37,7 @@ private:
     int aMaster;
     int aSlave;
     pid_t pid;
+    const char* shell;
 
 signals:
     void sendCmd(QString cmd);
